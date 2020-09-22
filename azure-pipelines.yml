@@ -5,7 +5,6 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 stages:
 - stage: Build
   jobs:
-
   - job: 'django_basic'
     strategy:
       matrix:
@@ -14,8 +13,11 @@ stages:
         Python37:
           python.version: '3.7'
       maxParallel: 1
-
     steps:
+    - task: ServiceNow-DevOps-Agent-Job-Notification@1
+      inputs:
+        connectedServiceName: 'newCon'
+        Phase: 'STARTED'
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(python.version)'
@@ -37,110 +39,7 @@ stages:
         testResultsFiles: 'reports/django-basic.xml'
         testRunTitle: '$(Agent.JobName)'
       condition: succeededOrFailed()
-
-  - job: 'django_multi_environment'
-    strategy:
-      matrix:
-        Python36_Django213:
-          python.version: '3.6'
-          django.version: '2.1.3'
-        Python37_Django213:
-          python.version: '3.7'
-          django.version: '2.1.3'
-        Python37_Django214:
-          python.version: '3.7'
-          django.version: '2.1.4'
-      maxParallel: 3
-
-    steps:
-    - task: UsePythonVersion@0
+    - task: ServiceNow-DevOps-Agent-Job-Notification@1
       inputs:
-        versionSpec: '$(python.version)'
-        architecture: 'x64'
-
-    - script: |
-        python -m pip install --upgrade pip
-        pip install django==$(django.version)
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest-django
-        cd django-multi-environment/azuredemo
-        pytest --junitxml=../../reports/django-multi-environment.xml
-      displayName: 'Run tests'
-
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFiles: 'reports/django-multi-environment.xml'
-        testRunTitle: '$(Agent.JobName)'
-      condition: succeededOrFailed()
-
-- stage: Test
-  dependsOn: []
-  jobs:
-  - job: 'flask_basic'
-    strategy:
-      matrix:
-        Python36:
-          python.version: '3.6'
-        Python37:
-          python.version: '3.7'
-      maxParallel: 2
-
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(python.version)'
-        architecture: 'x64'
-
-    - script: |
-        python -m pip install --upgrade pip
-        cd flask-basic
-        pip install '.[test]'
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest
-        cd flask-basic
-        pytest --junitxml=../reports/flask-basic.xml
-      displayName: 'Run tests'
-
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFiles: 'reports/flask-basic.xml'
-        testRunTitle: '$(Agent.JobName)'
-      condition: succeededOrFailed()
-
-  - job: 'flask_basic_with_coverage'
-    strategy:
-      matrix:
-        Python36:
-          python.version: '3.6'
-        Python37:
-          python.version: '3.7'
-      maxParallel: 2
-
-    steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(python.version)'
-        architecture: 'x64'
-
-    - script: |
-        python -m pip install --upgrade pip
-        cd flask-basic
-        pip install '.[test]'
-      displayName: 'Install dependencies'
-
-    - script: |
-        pip install pytest coverage
-        cd flask-basic
-        coverage run -m pytest --junitxml=../reports/flask-basic-coverage.xml
-        coverage report
-      displayName: 'Run tests and coverage'
-
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFiles: 'reports/flask-basic-coverage.xml'
-        testRunTitle: '$(Agent.JobName)'
-      condition: succeededOrFailed()
+          connectedServiceName: 'newCon'
+          Phase: 'COMPLETED'
