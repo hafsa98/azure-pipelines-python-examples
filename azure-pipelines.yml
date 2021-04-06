@@ -14,10 +14,11 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
-    - task: ServiceNow-DevOps-Agent-Job-Notification@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'newCon'
-        Phase: 'STARTED'
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
+        sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '$(python.version)'
@@ -39,7 +40,3 @@ stages:
         testResultsFiles: 'reports/django-basic.xml'
         testRunTitle: '$(Agent.JobName)'
       condition: succeededOrFailed()
-    - task: ServiceNow-DevOps-Agent-Job-Notification@1
-      inputs:
-          connectedServiceName: 'newCon'
-          Phase: 'COMPLETED'
