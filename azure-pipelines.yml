@@ -51,3 +51,8 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
+      inputs:
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'Sonar_Project_Key'
+        sonarInstanceUrl: 'https://sonarcloud.io'
