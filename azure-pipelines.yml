@@ -40,3 +40,14 @@ stages:
         testResultsFiles: 'reports/django-basic.xml'
         testRunTitle: '$(Agent.JobName)'
       condition: succeededOrFailed()
+- stage: 
+  jobs:
+  - job: 'StageLess'
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          
+          echo 'Hello world'
