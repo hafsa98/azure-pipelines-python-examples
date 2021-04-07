@@ -56,3 +56,14 @@ stages:
         connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
         sonarProjectKey: 'Sonar_Project_Key'
         sonarInstanceUrl: 'https://sonarcloud.io'
+- stage: 
+  jobs:
+  - job:
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          
+          echo 'Hello world'
