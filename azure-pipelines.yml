@@ -14,10 +14,10 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
-    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Sonar-Registration@1
       inputs:
         connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'hafsataneem_SonarCloud'
+        sonarProjectKey: 'StrategyMatrix_InsideStage'
         sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
@@ -51,11 +51,12 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
-    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
+
+    - task: ServiceNow-DevOps-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'Sonar_Project_Key'
-        sonarInstanceUrl: 'https://sonarcloud.io'
+          connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+          sonarProjectKey: 'No_Stage_Name'
+          sonarInstanceUrl: 'https://sonarcloud.io'
 - stage: 
   jobs:
   - job:
@@ -67,3 +68,8 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+    - task: ServiceNow-DevOps-Sonar-Registration@1
+      inputs:
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'No _Stage_&_Job_Name'
+        sonarInstanceUrl: 'https://sonarcloud.io'
