@@ -4,6 +4,7 @@ name: $(Date:yyyyMMdd)$(Rev:.r)
 
 stages:
 - stage: Build
+  displayName: BuildStageDisplayName
   jobs:
   - job: 'django_basic'
     strategy:
@@ -40,9 +41,11 @@ stages:
         testResultsFiles: 'reports/django-basic.xml'
         testRunTitle: '$(Agent.JobName)'
       condition: succeededOrFailed()
-- stage: 
+- stage:
+  displayName: NoNameStageDisplayName
   jobs:
   - job: 'StageLess'
+    displayName: displayNameForJobStageLess
     steps:
     - task: Bash@3
       inputs:
