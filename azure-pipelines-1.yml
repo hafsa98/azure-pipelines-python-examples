@@ -23,6 +23,11 @@ steps:
   inputs:
     versionSpec: '$(PYTHON_VERSION)'
     architecture: 'x64'
+- task: ServiceNow-DevOps-Sonar-Registration@1
+  inputs:
+    connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+    sonarProjectKey: 'StrategyMatrix_NoStage'
+    sonarInstanceUrl: 'https://sonarcloud.io/'
 
 - task: PythonScript@0
   displayName: 'Export project path'
