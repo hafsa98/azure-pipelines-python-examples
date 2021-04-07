@@ -18,7 +18,7 @@ stages:
     - task: ServiceNow-DevOps-Sonar-Registration@1
       inputs:
         connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'StrategyMatrix_InsideStage'
+        sonarProjectKey: 'StrategyMatrix_InsideStage_Both_SN_DN'
         sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
@@ -41,6 +41,85 @@ stages:
         testResultsFiles: 'reports/django-basic.xml'
         testRunTitle: '$(Agent.JobName)'
       condition: succeededOrFailed()
+    
+- stage: 
+  displayName: 
+  jobs:
+  - job: 'django_basic'
+    strategy:
+      matrix:
+        Python36:
+          python.version: '3.6'
+        Python37:
+          python.version: '3.7'
+      maxParallel: 1
+    steps:
+    - task: ServiceNow-DevOps-Sonar-Registration@1
+      inputs:
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'StrategyMatrix_InsideStage_NO_SN_NO_DN'
+        sonarInstanceUrl: 'https://sonarcloud.io'
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+        architecture: 'x64'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install -r django-basic/requirements.txt
+      displayName: 'Install dependencies'
+
+    - script: |
+        pip install pytest-django
+        cd django-basic/azuredemo
+        pytest --junitxml=../../reports/django-basic.xml
+      displayName: 'Run tests'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: 'reports/django-basic.xml'
+        testRunTitle: '$(Agent.JobName)'
+      condition: succeededOrFailed()
+- stage: 
+  displayName: MatrixStageDisplayName
+  jobs:
+  - job: 'django_basic'
+    strategy:
+      matrix:
+        Python36:
+          python.version: '3.6'
+        Python37:
+          python.version: '3.7'
+      maxParallel: 1
+    steps:
+    - task: ServiceNow-DevOps-Sonar-Registration@1
+      inputs:
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'StrategyMatrix_InsideStage_Only_DN'
+        sonarInstanceUrl: 'https://sonarcloud.io'
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+        architecture: 'x64'
+
+    - script: |
+        python -m pip install --upgrade pip
+        pip install -r django-basic/requirements.txt
+      displayName: 'Install dependencies'
+
+    - script: |
+        pip install pytest-django
+        cd django-basic/azuredemo
+        pytest --junitxml=../../reports/django-basic.xml
+      displayName: 'Run tests'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: 'reports/django-basic.xml'
+        testRunTitle: '$(Agent.JobName)'
+      condition: succeededOrFailed()
+
+
 - stage:
   displayName: NoNameStageDisplayName
   jobs:
@@ -58,11 +137,31 @@ stages:
     - task: ServiceNow-DevOps-Sonar-Registration@1
       inputs:
           connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-          sonarProjectKey: 'No_Stage_Name'
+          sonarProjectKey: 'No_Stage_Name_SDN_JN_JDN'
+          sonarInstanceUrl: 'https://sonarcloud.io'
+- stage:
+  displayName: NoNameStageDisplayName
+  jobs:
+  - job: 'StageLess'
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          
+          echo 'Hello world'
+
+    - task: ServiceNow-DevOps-Sonar-Registration@1
+      inputs:
+          connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+          sonarProjectKey: 'No_Stage_Name_SDN_JN'
           sonarInstanceUrl: 'https://sonarcloud.io'
 - stage: 
+  displayName:
   jobs:
   - job:
+    displayName:
     steps:
     - task: Bash@3
       inputs:
@@ -74,5 +173,5 @@ stages:
     - task: ServiceNow-DevOps-Sonar-Registration@1
       inputs:
         connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'No _Stage_&_Job_Name'
+        sonarProjectKey: 'No _Stage_&_Job_Name_&_NO_DisplayName'
         sonarInstanceUrl: 'https://sonarcloud.io'
