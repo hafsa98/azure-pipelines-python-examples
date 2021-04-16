@@ -175,3 +175,9 @@ stages:
         connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
         sonarProjectKey: 'No _Stage_&_Job_Name_&_NO_DisplayName'
         sonarInstanceUrl: 'https://sonarcloud.io'
+
+    - task: ServiceNow-DevOps-Sonar-Registration@1
+      inputs:
+        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'No _Stage_&_Job_Name_&_NO_DisplayName'
+        sonarInstanceUrl: 'https://sonarcloud.io'
