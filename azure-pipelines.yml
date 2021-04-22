@@ -15,10 +15,10 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'StrategyMatrix_InsideStage_Both_SN_DN'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
@@ -54,10 +54,10 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'StrategyMatrix_InsideStage_NO_SN_NO_DN'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
@@ -92,10 +92,10 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'StrategyMatrix_InsideStage_Only_DN'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
     - task: UsePythonVersion@0
       inputs:
@@ -133,12 +133,11 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
-
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-          connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-          sonarProjectKey: 'No_Stage_Name_SDN_JN_JDN'
-          sonarInstanceUrl: 'https://sonarcloud.io'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
+        sonarInstanceUrl: 'https://sonarcloud.io'
 - stage:
   displayName: NoNameStageDisplayName
   jobs:
@@ -151,12 +150,11 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
-
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-          connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-          sonarProjectKey: 'No_Stage_Name_SDN_JN'
-          sonarInstanceUrl: 'https://sonarcloud.io'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
+        sonarInstanceUrl: 'https://sonarcloud.io'
 - stage: 
   displayName:
   jobs:
@@ -170,14 +168,14 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'No _Stage_&_Job_Name_&_NO_DisplayName'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
-
-    - task: ServiceNow-DevOps-Sonar-Registration@1
+    - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
-        connectedServiceName: 'amar-SonarIntegration-ServiceNow DevOps Service Connection'
-        sonarProjectKey: 'No _Stage_&_Job_Name_&_NO_DisplayName'
+        connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
+        sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
+  
