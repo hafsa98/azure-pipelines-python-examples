@@ -15,6 +15,16 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+    
+    - task: SonarCloudAnalyze@1
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
@@ -54,6 +64,16 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+    
+    - task: SonarCloudAnalyze@1
+
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
@@ -92,6 +112,17 @@ stages:
           python.version: '3.7'
       maxParallel: 1
     steps:
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+  
+    - task: SonarCloudAnalyze@1
+
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
@@ -133,6 +164,16 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+      
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+  
+    - task: SonarCloudAnalyze@1
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
@@ -150,6 +191,17 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+      
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+    
+    - task: SonarCloudAnalyze@1
+
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
@@ -168,11 +220,31 @@ stages:
           # Write your commands here
           
           echo 'Hello world'
+      
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+    
+    - task: SonarCloudAnalyze@1
+
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
         sonarProjectKey: 'hafsataneem_SonarCloud'
         sonarInstanceUrl: 'https://sonarcloud.io'
+    
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'SonarCloud'
+        organization: 'hafsataneem'
+        scannerMode: 'MSBuild'
+        projectKey: 'hafsataneem_SonarCloud'
+        projectName: 'SonarCloud'
+    - task: SonarCloudAnalyze@1
     - task: ServiceNow-DevOps-Build-Sonar-Registration@1
       inputs:
         connectedServiceName: 'empdevhafsa-SonarIntegration-ServiceNow DevOps Service Connection'
